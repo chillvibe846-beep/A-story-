@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChillVibe | Premium Adult Fiction (18+)</title>
+    <meta name="description" content="ChillVibe is a premium reading platform for adult fiction. Intended for audiences 18 and older.">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Age Gate Modal -->
+    <div id="age-gate" class="modal-overlay" aria-hidden="true">
+        <div class="modal-content text-center">
+            <h2 class="font-serif text-accent">18+ Only</h2>
+            <p>This website contains mature adult fiction and is intended ONLY for adults aged 18 and over.</p>
+            <div class="modal-actions mt-4">
+                <button id="btn-enter" class="btn btn-primary">Enter — I am 18+</button>
+                <a href="https://google.com" class="btn btn-secondary">Leave</a>
+            </div>
+        </div>
+    </div>
+
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo font-serif text-accent">CHILLVIBE</a>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">☰</button>
+            <nav class="main-nav">
+                <a href="index.html" class="active">Home</a>
+                <a href="search.html">Search</a>
+                <a href="submit.html">Submit Story</a>
+                <span class="badge-18">18+</span>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero text-center">
+            <div class="container">
+                <h1 class="font-serif hero-title">Stories That Stay With You.</h1>
+                <p class="hero-subtitle">A premium reading community for mature fiction.</p>
+                <div class="hero-actions mt-4">
+                    <a href="#latest" class="btn btn-primary">Explore Stories</a>
+                    <a href="submit.html" class="btn btn-secondary">Submit Your Story</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="latest" class="container mt-5">
+            <div class="section-header">
+                <h2 class="font-serif">Latest Stories</h2>
+            </div>
+            <div id="story-grid" class="story-grid">
+                <!-- Stories injected via JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer mt-5">
+        <div class="container footer-grid">
+            <div>
+                <h3 class="font-serif text-accent mb-2">CHILLVIBE</h3>
+                <p class="text-sm text-muted">Premium 18+ Adult Fiction.</p>
+            </div>
+            <div>
+                <h4 class="mb-2">Explore</h4>
+                <nav class="footer-nav">
+                    <a href="index.html">Latest Stories</a>
+                    <a href="search.html">Search</a>
+                    <a href="submit.html">Submit Story</a>
+                </nav>
+            </div>
+            <div>
+                <h4 class="mb-2">Legal</h4>
+                <nav class="footer-nav">
+                    <a href="#">Terms & Privacy</a>
+                    <a href="#">Content Guidelines</a>
+                    <a href="#">Report Content</a>
+                </nav>
+            </div>
+        </div>
+        <div class="container text-center text-sm text-muted mt-4 border-top pt-2">
+            <p>© 2026 ChillVibe. All submitted stories are user-generated content subject to moderation.</p>
+        </div>
+    </footer>
+
+    <script src="js/config.js"></script>
+    <script src="data/stories.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
