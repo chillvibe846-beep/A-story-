@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Read Story | ChillVibe</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="site-header compact">
+        <div class="container header-inner">
+            <a href="index.html" class="logo font-serif text-accent">CHILLVIBE</a>
+            <nav class="main-nav">
+                <a href="index.html">Back to Home</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="reading-progress-bar" id="reading-progress"></div>
+
+    <main class="reader-container mt-4">
+        <div id="story-error" class="hidden text-center mt-5">
+            <h2 class="font-serif">Story Not Found</h2>
+            <p>The story you are looking for does not exist or has been removed.</p>
+            <a href="index.html" class="btn btn-primary mt-2">Return Home</a>
+        </div>
+
+        <article id="story-content" class="hidden">
+            <header class="story-header text-center">
+                <span id="story-category" class="category-tag"></span>
+                <h1 id="story-title" class="font-serif mt-2 mb-1"></h1>
+                <p class="story-meta text-muted">
+                    By <span id="story-author" class="text-white"></span> • 
+                    <span id="story-date"></span> • 
+                    <span id="story-time"></span>
+                </p>
+                <div class="story-cover-wrapper mt-3">
+                    <img id="story-cover" src="" alt="Story Cover" class="story-cover-img" loading="lazy">
+                </div>
+            </header>
+            
+            <div id="story-body" class="story-body font-serif mt-4">
+                <!-- Content injected here -->
+            </div>
+            
+            <div class="story-footer mt-5 text-center border-top pt-4">
+                <button class="btn btn-secondary" onclick="alert('Reporting functionality requires backend integration.')">Report Content</button>
+            </div>
+        </article>
+    </main>
+
+    <script src="js/config.js"></script>
+    <script src="data/stories.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        // Reader specific logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const storyId = urlParams.get('id');
+            const story = chillVibeData.stories.find(s => s.id === storyId && s.status === 'approved');
+
+            if (story) {
+                document.getElementById('story-content').classList.remove('hidden');
+                document.getElementById('story-title').textContent = story.title;
+                document.getElementById('story-category').textContent = story.category;
+                document.getElementById('story-author').textContent = story.author;
+                document.getElementById('story-date').textContent = new Date(story.publishedAt).toLocaleDateString();
+                document.getElementById('story-time').textContent = story.readingTime;
+                
+                const coverImg = document.getElementById('story-cover');
+                if (story.coverImage) {
+                    coverImg.src = story.coverImage;
+                    coverImg.alt = `Cover for ${story.title}`;
+                } else {
+                    coverImg.style.display = 'none';
+                }
+
+                // Sanitize and render (Basic defense against XSS for static data)
+                const sanitizedHTML = story.content.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
+                document.getElementById('story-body').innerHTML = sanitizedHTML;
+                document.title = `${story.title} | ChillVibe`;
+            } else {
+                document.getElementById('story-error').classList.remove('hidden');
+            }
+
+            // Reading progress
+            window.addEventListener('scroll', () => {
+                const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (winScroll / height) * 100;
+                document.getElementById('reading-progress').style.width = scrolled + "%";
+            });
+        });
+    </script>
+</body>
+</html>
