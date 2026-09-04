@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Story | ChillVibe</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="site-header compact">
+        <div class="container header-inner">
+            <a href="index.html" class="logo font-serif text-accent">CHILLVIBE</a>
+            <nav class="main-nav"><a href="index.html">Back to Home</a></nav>
+        </div>
+    </header>
+
+    <main class="container form-container mt-4 mb-5">
+        <div class="text-center mb-4">
+            <h1 class="font-serif">Submit Your Story</h1>
+            <p class="text-muted">All submissions are reviewed before publication.</p>
+        </div>
+
+        <!-- NOTE: action URL should be replaced with your Formspree/Getform endpoint -->
+        <form id="submission-form" action="https://formspree.io/f/YOUR_ENDPOINT_HERE" method="POST" class="custom-form">
+            <div class="form-group">
+                <label for="author">Display Name *</label>
+                <input type="text" id="author" name="author" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email Address (Kept private) *</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="title">Story Title *</label>
+                <input type="text" id="title" name="title" required>
+            </div>
+
+            <div class="form-group">
+                <label for="category">Category *</label>
+                <select id="category" name="category" required>
+                    <option value="">Select a category</option>
+                    <option value="Romance">Romance</option>
+                    <option value="Forbidden Romance">Forbidden Romance</option>
+                    <option value="Psychological">Psychological</option>
+                    <option value="Mature Fiction">Mature Fiction</option>
+                    <option value="Fantasy">Fantasy</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="excerpt">Short Description (Max 200 chars) *</label>
+                <textarea id="excerpt" name="excerpt" rows="2" maxlength="200" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="content">Story Content *</label>
+                <textarea id="content" name="content" rows="15" placeholder="Write or paste your story here... HTML formatting supported in backend." required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="coverImage">Cover Image URL (Optional)</label>
+                <input type="url" id="coverImage" name="coverImage" placeholder="https://...">
+                <small class="text-muted text-sm">Provide a link to an image. Image uploads require backend integration.</small>
+            </div>
+
+            <div class="form-group checkbox-group">
+                <input type="checkbox" id="age-confirm" name="age-confirm" required>
+                <label for="age-confirm">I confirm that I am 18+, and all characters depicted in sexual situations are explicitly 18+.</label>
+            </div>
+
+            <div class="form-group checkbox-group">
+                <input type="checkbox" id="rights-confirm" name="rights-confirm" required>
+                <label for="rights-confirm">I own the rights to this story and agree to the Terms of Use.</label>
+            </div>
+
+            <!-- Subject line for Formspree email -->
+            <input type="hidden" name="_subject" value="New ChillVibe Story Submission">
+
+            <button type="submit" class="btn btn-primary w-100">Submit for Review</button>
+        </form>
+    </main>
+</body>
+</html>
